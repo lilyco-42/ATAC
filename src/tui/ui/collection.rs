@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::Rect;
 use ratatui::prelude::{Modifier, Style};
@@ -30,7 +31,7 @@ impl<'a> App<'a> {
             .node_no_children_symbol("")
             .block(
                 Block::default()
-                    .title("Collections")
+                    .title(t!("Collections"))
                     .borders(Borders::ALL)
                     .fg(THEME.read().ui.main_foreground_color)
             );

@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::layout::Direction::{Horizontal, Vertical};
@@ -13,7 +14,7 @@ use crate::tui::utils::stateful::cookie_table::{CookieColumns, COOKIES_COLUMNS_N
 impl App<'_> {
     pub fn render_cookies_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Cookies")
+            .title(t!("Cookies"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.font_color)
             .bg(THEME.read().ui.main_background_color);
@@ -66,8 +67,8 @@ impl App<'_> {
             None => {
                 let cookies_lines = vec![
                     Line::default(),
-                    Line::from("No cookies"),
-                    Line::from("(Add one by sending a request)".fg(THEME.read().ui.font_color))
+                    Line::from(t!("No cookies")),
+                    Line::from(t!("(Add one by sending a request)").fg(THEME.read().ui.font_color))
                 ];
 
                 let cookies_paragraph = Paragraph::new(cookies_lines).centered();

@@ -19,6 +19,7 @@ mod app;
 mod models;
 mod cli;
 mod tui;
+mod locale;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {

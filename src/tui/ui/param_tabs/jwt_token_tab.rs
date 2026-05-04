@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
 use crate::tui::app_states::AppState::{EditingRequestAuthJwtSecret, EditingRequestAuthJwtPayload, SelectedRequest};
@@ -33,12 +34,12 @@ impl App<'_> {
         };
 
         let mut algorithm_block = Block::new()
-            .title("Algorithm ← →")
+            .title(t!("Algorithm ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
         let mut secret_type_block = Block::new()
-            .title("Secret type ← →")
+            .title(t!("Secret type ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
@@ -94,7 +95,7 @@ impl App<'_> {
         secret_type_paragraph = secret_type_paragraph.block(secret_type_block);
 
 
-        self.auth_jwt_secret_text_input.block_title = Some(format!("Secret ({})", algorithm.get_helper()));
+        self.auth_jwt_secret_text_input.block_title = Some(format!("{} ({})", t!("Secret"), algorithm.get_helper()));
         self.auth_jwt_secret_text_input.highlight_text = highlight_secret;
         self.auth_jwt_secret_text_input.highlight_block = highlight_secret;
         self.auth_jwt_secret_text_input.display_cursor = display_secret_cursor;

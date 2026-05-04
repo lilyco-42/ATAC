@@ -1,3 +1,4 @@
+use crate::t;
 use std::str::Lines;
 use ratatui::prelude::{Line, Stylize};
 use crate::app::app::App;
@@ -74,8 +75,8 @@ impl App<'_> {
             let mut highlighted_console_output = highlight(pre_request_console_output, "json").unwrap();
 
             highlighted_console_output.insert(0, Line::default());
-            highlighted_console_output.insert(1, Line::raw("----- Pre-request script start -----").fg(THEME.read().ui.secondary_foreground_color).centered());
-            highlighted_console_output.push(Line::raw("----- Pre-request script end -----").fg(THEME.read().ui.secondary_foreground_color).centered());
+            highlighted_console_output.insert(1, Line::raw(t!("----- Pre-request script start -----")).fg(THEME.read().ui.secondary_foreground_color).centered());
+            highlighted_console_output.push(Line::raw(t!("----- Pre-request script end -----")).fg(THEME.read().ui.secondary_foreground_color).centered());
 
             self.syntax_highlighting.highlighted_console_output.extend(highlighted_console_output);
         }
@@ -84,8 +85,8 @@ impl App<'_> {
             let mut highlighted_console_output = highlight(post_request_console_output, "json").unwrap();
 
             highlighted_console_output.insert(0, Line::default());
-            highlighted_console_output.insert(1, Line::raw("----- Post-request script start -----").fg(THEME.read().ui.secondary_foreground_color).centered());
-            highlighted_console_output.push(Line::raw("----- Post-request script end -----").fg(THEME.read().ui.secondary_foreground_color).centered());
+            highlighted_console_output.insert(1, Line::raw(t!("----- Post-request script start -----")).fg(THEME.read().ui.secondary_foreground_color).centered());
+            highlighted_console_output.push(Line::raw(t!("----- Post-request script end -----")).fg(THEME.read().ui.secondary_foreground_color).centered());
 
             self.syntax_highlighting.highlighted_console_output.extend(highlighted_console_output);
         }

@@ -49,7 +49,11 @@ pub struct Args {
     /// Avoid using ANSI format for log file/output
     #[arg(long, global = true, default_value_t = false)]
     pub no_ansi_log: bool,
-    
+
+    /// Set language / locale (e.g. "en", "zh")
+    #[arg(long, global = true)]
+    pub lang: Option<String>,
+
     #[command(flatten)]
     pub verbose: Verbosity
 }
@@ -148,7 +152,8 @@ lazy_static! {
             should_save: !args.dry_run,
             should_parse_directory,
             verbosity: args.verbose,
-            ansi_log: !args.no_ansi_log
+            ansi_log: !args.no_ansi_log,
+            lang: args.lang,
         }
     };
 }
@@ -202,5 +207,6 @@ pub struct GlobalArgs {
     pub should_save: bool,
     pub should_parse_directory: bool,
     pub verbosity: Verbosity,
-    pub ansi_log: bool
+    pub ansi_log: bool,
+    pub lang: Option<String>,
 }

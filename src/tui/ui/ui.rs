@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::backend::Backend;
 use ratatui::{Frame, Terminal};
 use ratatui::layout::{Alignment, Constraint, Layout};
@@ -40,7 +41,7 @@ impl App<'_> {
         // HEADER
 
         let header = Block::new()
-            .title("* ATAC *")
+            .title(t!("* ATAC *"))
             .add_modifier(Modifier::BOLD)
             .add_modifier(Modifier::ITALIC)
             .title_alignment(Alignment::Center)

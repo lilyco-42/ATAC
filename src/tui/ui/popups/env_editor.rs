@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
 use crate::tui::app_states::AppState::EditingEnvVariable;
@@ -14,7 +15,7 @@ impl App<'_> {
         let env = local_env.read();
 
         let popup_block = Block::default()
-            .title(format!("Editing {}", env.name))
+            .title(format!("{} {}", t!("Editing"), env.name))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color)
             .bg(THEME.read().ui.secondary_background_color);

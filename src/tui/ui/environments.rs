@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::Rect;
 use ratatui::style::Style;
@@ -18,7 +19,7 @@ impl<'a> App<'a> {
         let current_environment_paragraph = Paragraph::new(current_environment)
             .block(
                 Block::default()
-                    .title("Environment")
+                    .title(t!("Environment"))
                     .borders(Borders::ALL)
                     .style(Style::new().fg(THEME.read().ui.secondary_foreground_color))
             );

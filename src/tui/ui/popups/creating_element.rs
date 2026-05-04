@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::Direction::Horizontal;
 use ratatui::layout::{Constraint, Layout};
@@ -11,7 +12,7 @@ use crate::tui::utils::centered_rect::centered_rect;
 impl App<'_> {
     pub fn render_creating_element_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Choose element to create")
+            .title(t!("Choose element to create"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color)
             .bg(THEME.read().ui.main_background_color);

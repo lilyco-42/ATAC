@@ -39,7 +39,11 @@ pub struct Config {
 
     #[serde(default)]
     /// Proxy usage
-    pub proxy: Option<Proxy>
+    pub proxy: Option<Proxy>,
+
+    #[serde(default)]
+    /// Language / locale (e.g. "en", "zh")
+    pub language: Option<String>,
 }
 
 #[derive(Default, Serialize, Deserialize)]

@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::prelude::Stylize;
 use ratatui::widgets::{Block, Borders, Clear};
 use ratatui::Frame;
@@ -10,7 +11,7 @@ use crate::tui::utils::stateful::text_input::SingleLineTextInput;
 impl App<'_> {
     pub fn render_creating_new_collection_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Enter the new collection name")
+            .title(t!("Enter the new collection name"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color)
             .bg(THEME.read().ui.main_background_color);

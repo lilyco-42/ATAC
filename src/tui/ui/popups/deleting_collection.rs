@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::Direction::Horizontal;
 use ratatui::layout::{Constraint, Layout};
@@ -11,7 +12,7 @@ use crate::tui::utils::centered_rect::centered_rect;
 impl App<'_> {
     pub fn render_deleting_collection_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Confirm delete collection")
+            .title(t!("Confirm delete collection"))
             .borders(Borders::ALL)
             .style(Style::default().bg(THEME.read().ui.main_background_color));
 
@@ -28,8 +29,8 @@ impl App<'_> {
             .horizontal_margin(1)
             .split(area);
 
-        let mut no_paragraph = Paragraph::new("no").centered();
-        let mut yes_paragraph = Paragraph::new("yes").centered();
+        let mut no_paragraph = Paragraph::new(t!("no")).centered();
+        let mut yes_paragraph = Paragraph::new(t!("yes")).centered();
 
         match self.delete_collection_popup.state {
             false => no_paragraph = no_paragraph.fg(THEME.read().others.selection_highlight_color).bold(),

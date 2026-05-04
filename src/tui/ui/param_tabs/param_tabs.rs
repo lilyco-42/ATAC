@@ -1,10 +1,11 @@
+use crate::t;
 use ratatui::layout::Direction::Vertical;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::style::Stylize;
 use ratatui::text::Line;
 use ratatui::widgets::{Block, Borders, Paragraph, Tabs};
 use ratatui::Frame;
-use strum::{Display, EnumIter, FromRepr};
+use strum::{EnumIter, FromRepr};
 
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
@@ -17,21 +18,28 @@ use crate::tui::tui_logic::utils::key_value_vec_to_items_list;
 use crate::tui::utils::stateful::text_input::MultiLineTextInput;
 use crate::tui::utils::syntax_highlighting::{ENV_VARIABLE_SYNTAX_REF, HTML_SYNTAX_REF, JSON_SYNTAX_REF, JS_SYNTAX_REF, XML_SYNTAX_REF};
 
-#[derive(Default, Clone, Copy, PartialEq, Display, FromRepr, EnumIter)]
+#[derive(Default, Clone, Copy, PartialEq, FromRepr, EnumIter)]
 pub enum RequestParamsTabs {
     #[default]
-    #[strum(to_string = "Params")]
     QueryParams,
-    #[strum(to_string = "Auth")]
     Auth,
-    #[strum(to_string = "Headers")]
     Headers,
-    #[strum(to_string = "Body")]
     Body,
-    #[strum(to_string = "Message")]
     Message,
-    #[strum(to_string = "Scripts")]
-    Scripts
+    Scripts,
+}
+
+impl std::fmt::Display for RequestParamsTabs {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            RequestParamsTabs::QueryParams => write!(f, "{}", t!("Params")),
+            RequestParamsTabs::Auth => write!(f, "{}", t!("Auth")),
+            RequestParamsTabs::Headers => write!(f, "{}", t!("Headers")),
+            RequestParamsTabs::Body => write!(f, "{}", t!("Body")),
+            RequestParamsTabs::Message => write!(f, "{}", t!("Message")),
+            RequestParamsTabs::Scripts => write!(f, "{}", t!("Scripts")),
+        }
+    }
 }
 
 impl App<'_> {
@@ -143,8 +151,8 @@ impl App<'_> {
                     NoAuth => {
                         let auth_lines = vec![
                             Line::default(),
-                            Line::from("No auth").fg(THEME.read().ui.font_color),
-                            Line::from("(Change auth method with ^a)").fg(THEME.read().ui.secondary_foreground_color)
+                            Line::from(t!("No auth")).fg(THEME.read().ui.font_color),
+                            Line::from(t!("(Change auth method with ^a)")).fg(THEME.read().ui.secondary_foreground_color)
                         ];
 
                         let auth_paragraph = Paragraph::new(auth_lines).centered();
@@ -171,8 +179,8 @@ impl App<'_> {
                     NoBody => {
                         let body_lines = vec![
                             Line::default(),
-                            Line::from("No body").fg(THEME.read().ui.font_color),
-                            Line::from("(Change body type with ^b)").fg(THEME.read().ui.secondary_foreground_color)
+                            Line::from(t!("No body")).fg(THEME.read().ui.font_color),
+                            Line::from(t!("(Change body type with ^b)")).fg(THEME.read().ui.secondary_foreground_color)
                         ];
 
                         let body_paragraph = Paragraph::new(body_lines).centered();

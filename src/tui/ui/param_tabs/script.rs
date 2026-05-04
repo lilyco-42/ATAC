@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::layout::Direction::Vertical;
 use ratatui::layout::{Alignment, Constraint, Layout, Rect};
 use ratatui::prelude::Stylize;
@@ -31,12 +32,12 @@ impl App<'_> {
             0 => {
                 highlight_pre_request_script = true;
 
-                " ↑ Pre-request "
+                t!(" ↑ Pre-request ")
             },
             1 => {
                 highlight_post_request_script = true;
 
-                " Post-request ↓ "
+                t!(" Post-request ↓ ")
             },
             _ => ""
         };

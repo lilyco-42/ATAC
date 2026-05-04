@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
 use crate::tui::app_states::AppState::{SelectedRequest, EditingRequestAuthDigestUsername, EditingRequestAuthDigestPassword, EditingRequestAuthDigestDomains, EditingRequestAuthDigestRealm, EditingRequestAuthDigestNonce, EditingRequestAuthDigestOpaque};
@@ -42,27 +43,27 @@ impl App<'_> {
         };
 
         let mut stale_block = Block::new()
-            .title("Stale ← →")
+            .title(t!("Stale ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
         let mut algorithm_block = Block::new()
-            .title("Algorithm ← →")
+            .title(t!("Algorithm ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
         let mut qop_block = Block::new()
-            .title("QOP ← →")
+            .title(t!("QOP ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
         let mut user_hash_block = Block::new()
-            .title("User hash ← →")
+            .title(t!("User hash ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 
         let mut charset_block = Block::new()
-            .title("Charset ← →")
+            .title(t!("Charset ← →"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color);
 

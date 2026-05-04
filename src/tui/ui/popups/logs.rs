@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
 use crate::app::log::LOGS;
@@ -13,7 +14,7 @@ use tracing::Level;
 impl App<'_> {
     pub fn render_logs_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Logs")
+            .title(t!("Logs"))
             .borders(Borders::ALL)
             .fg(THEME.read().ui.main_foreground_color)
             .bg(THEME.read().ui.secondary_background_color);

@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::layout::Direction::{Horizontal, Vertical};
@@ -48,10 +49,10 @@ impl App<'_> {
             .build();
 
 
-        let welcome_to = Paragraph::new("Welcome to")
+        let welcome_to = Paragraph::new(t!("Welcome to"))
             .centered()
             .fg(THEME.read().ui.secondary_foreground_color);
-        let description = Paragraph::new("{A}rguably a {T}erminal {A}PI {C}lient")
+        let description = Paragraph::new(t!("{A}rguably a {T}erminal {A}PI {C}lient"))
             .centered()
             .fg(THEME.read().ui.main_foreground_color);
 

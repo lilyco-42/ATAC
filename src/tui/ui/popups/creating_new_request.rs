@@ -1,3 +1,4 @@
+use crate::t;
 use ratatui::layout::Direction::Vertical;
 use ratatui::layout::{Constraint, Layout};
 use ratatui::prelude::{Color, Stylize};
@@ -39,7 +40,7 @@ impl App<'_> {
             .fg(THEME.read().ui.font_color)
             .block(
                 Block::new()
-                    .title("Collection ← →")
+                    .title(t!("Collection ← →"))
                     .borders(Borders::ALL)
                     .fg(selection_collection_block_color)
             );
@@ -53,7 +54,7 @@ impl App<'_> {
             .fg(THEME.read().ui.font_color)
             .block(
                 Block::new()
-                    .title("Protocol ← →")
+                    .title(t!("Protocol ← →"))
                     .borders(Borders::ALL)
                     .fg(selected_protocol_block_color)
             );

@@ -9,7 +9,10 @@ use ratatui::Terminal;
 use strum::VariantArray;
 use throbber_widgets_tui::ThrobberState;
 
+use crate::t;
 use crate::app::files::config::Config;
+use crate::locale;
+use crate::cli::args::ARGS;
 use crate::models::collection::Collection;
 use crate::models::environment::Environment;
 use crate::models::export::ExportFormat;
@@ -177,11 +180,11 @@ impl App<'_> {
             env_editor_table: StatefulCustomTable::new(
                 vec![
                     Line::default(),
-                    Line::from("No environment variable").fg(THEME.read().ui.font_color),
-                    Line::from("(Add one with n)").fg(THEME.read().ui.secondary_foreground_color)
+                    Line::from(t!("No environment variable")).fg(THEME.read().ui.font_color),
+                    Line::from(t!("(Add one with n)")).fg(THEME.read().ui.secondary_foreground_color)
                 ],
-                "Key",
-                "Value"
+                t!("Key"),
+                t!("Value")
             ),
 
             /* Cookies */
@@ -204,7 +207,7 @@ impl App<'_> {
             request_result_tab: RequestResultTabs::Body,
 
             creation_popup: ChoicePopup {
-              choices: vec![String::from("Collection"), String::from("Request")],
+              choices: vec![t!("Collection").to_string(), t!("Request").to_string()],
               selection: 0
             },
             
@@ -218,62 +221,62 @@ impl App<'_> {
             
             /* Request */
             
-            url_text_input: TextInput::new(Some(String::from("URL"))),
+            url_text_input: TextInput::new(Some(t!("URL").to_string())),
 
             /* Query params */
             
             query_params_table: StatefulCustomTable::new(
                 vec![
                     Line::default(),
-                    Line::from("No params").fg(THEME.read().ui.font_color),
-                    Line::from("(Add one with n or via the URL)").fg(THEME.read().ui.secondary_foreground_color)
+                    Line::from(t!("No params")).fg(THEME.read().ui.font_color),
+                    Line::from(t!("(Add one with n or via the URL)")).fg(THEME.read().ui.secondary_foreground_color)
                 ],
-                "Param",
-                "Value"
+                t!("Param"),
+                t!("Value")
             ),
 
             /* Auth */
             
             auth_text_input_selection: TextInputSelection::default(),
             
-            auth_basic_username_text_input: TextInput::new(Some(String::from("Username"))),
-            auth_basic_password_text_input: TextInput::new(Some(String::from("Password"))),
-            
-            auth_bearer_token_text_input: TextInput::new(Some(String::from("Bearer token"))),
-            
-            auth_jwt_secret_text_input: TextInput::new(Some(String::from("Secret"))),
-            auth_jwt_payload_text_area: TextInput::new(Some(String::from("Payload"))),
+            auth_basic_username_text_input: TextInput::new(Some(t!("Username").to_string())),
+            auth_basic_password_text_input: TextInput::new(Some(t!("Password").to_string())),
 
-            auth_digest_username_text_input: TextInput::new(Some(String::from("Username"))),
-            auth_digest_password_text_input: TextInput::new(Some(String::from("Password"))),
-            auth_digest_domains_text_input: TextInput::new(Some(String::from("Domains"))),
-            auth_digest_realm_text_input: TextInput::new(Some(String::from("Realm"))),
-            auth_digest_nonce_text_input: TextInput::new(Some(String::from("Nonce"))),
-            auth_digest_opaque_text_input: TextInput::new(Some(String::from("Opaque"))),
+            auth_bearer_token_text_input: TextInput::new(Some(t!("Bearer token").to_string())),
+
+            auth_jwt_secret_text_input: TextInput::new(Some(t!("Secret").to_string())),
+            auth_jwt_payload_text_area: TextInput::new(Some(t!("Payload").to_string())),
+
+            auth_digest_username_text_input: TextInput::new(Some(t!("Username").to_string())),
+            auth_digest_password_text_input: TextInput::new(Some(t!("Password").to_string())),
+            auth_digest_domains_text_input: TextInput::new(Some(t!("Domains").to_string())),
+            auth_digest_realm_text_input: TextInput::new(Some(t!("Realm").to_string())),
+            auth_digest_nonce_text_input: TextInput::new(Some(t!("Nonce").to_string())),
+            auth_digest_opaque_text_input: TextInput::new(Some(t!("Opaque").to_string())),
             
             /* Headers */
             
             headers_table: StatefulCustomTable::new(
                 vec![
                     Line::default(),
-                    Line::from("Default headers").fg(THEME.read().ui.font_color),
-                    Line::from("(Add one with n)").fg(THEME.read().ui.secondary_foreground_color)
+                    Line::from(t!("Default headers")).fg(THEME.read().ui.font_color),
+                    Line::from(t!("(Add one with n)")).fg(THEME.read().ui.secondary_foreground_color)
                 ],
-                "Header",
-                "Value"
+                t!("Header"),
+                t!("Value")
             ),
 
             /* Body */
             
-            body_file_text_input: TextInput::new(Some(String::from("File path"))),
+            body_file_text_input: TextInput::new(Some(t!("File path").to_string())),
             body_form_table: StatefulCustomTable::new(
                 vec![
                     Line::default(),
-                    Line::from("No form data").fg(THEME.read().ui.font_color),
-                    Line::from("(Add one with n)").fg(THEME.read().ui.secondary_foreground_color)
+                    Line::from(t!("No form data")).fg(THEME.read().ui.font_color),
+                    Line::from(t!("(Add one with n)")).fg(THEME.read().ui.secondary_foreground_color)
                 ],
-                "Key",
-                "Value"
+                t!("Key"),
+                t!("Value")
             ),
             body_text_area: TextInput::new(None),
 
@@ -323,6 +326,21 @@ impl App<'_> {
         }
 
         Ok(())
+    }
+
+    /// Initialize locale by priority: CLI arg > config > env var ATAC_LANG > default (en)
+    pub fn init_locale(&self) {
+        let lang_str = ARGS.lang
+            .clone()
+            .or_else(|| self.config.language.clone())
+            .or_else(|| std::env::var("ATAC_LANG").ok());
+
+        let lang = match lang_str {
+            Some(s) => locale::Lang::from_str(&s),
+            None => locale::Lang::En,
+        };
+
+        locale::set_lang(lang);
     }
 
     pub fn chain_hook(&mut self) -> &mut Self {

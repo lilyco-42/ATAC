@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::tui::utils::centered_rect::centered_rect;
 use ratatui::Frame;
@@ -11,7 +12,7 @@ use ratatui::widgets::{Block, Borders, Clear, Paragraph};
 impl App<'_> {
     pub fn render_export_format_popup(&mut self, frame: &mut Frame) {
         let popup_block = Block::default()
-            .title("Choose request export format")
+            .title(t!("Choose request export format"))
             .borders(Borders::ALL)
             .style(Style::default().bg(Color::DarkGray));
 

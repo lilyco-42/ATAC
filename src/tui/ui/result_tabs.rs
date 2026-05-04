@@ -1,3 +1,4 @@
+use crate::t;
 use chrono::Local;
 use ratatui::layout::Direction::Vertical;
 use ratatui::layout::{Constraint, Layout, Margin, Rect};
@@ -9,7 +10,7 @@ use ratatui::Frame;
 use ratatui_image::picker::Picker;
 use ratatui_image::StatefulImage;
 use rayon::prelude::*;
-use strum::{Display, EnumIter, FromRepr};
+use strum::{EnumIter, FromRepr};
 use textwrap::wrap;
 use throbber_widgets_tui::{Throbber, WhichUse, BRAILLE_DOUBLE};
 
@@ -21,19 +22,26 @@ use crate::models::request::Request;
 use crate::models::response::ResponseContent;
 use crate::tui::utils::centered_rect::centered_rect;
 
-#[derive(Default, Clone, Copy, PartialOrd, PartialEq, Display, FromRepr, EnumIter)]
+#[derive(Default, Clone, Copy, PartialOrd, PartialEq, FromRepr, EnumIter)]
 pub enum RequestResultTabs {
     #[default]
-    #[strum(to_string = "Result body")]
     Body,
-    #[strum(to_string = "Messages")]
     Messages,
-    #[strum(to_string = "Cookies")]
     Cookies,
-    #[strum(to_string = "Headers")]
     Headers,
-    #[strum(to_string = "Console")]
     Console,
+}
+
+impl std::fmt::Display for RequestResultTabs {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            RequestResultTabs::Body => write!(f, "{}", t!("Result body")),
+            RequestResultTabs::Messages => write!(f, "{}", t!("Messages")),
+            RequestResultTabs::Cookies => write!(f, "{}", t!("Cookies")),
+            RequestResultTabs::Headers => write!(f, "{}", t!("Headers")),
+            RequestResultTabs::Console => write!(f, "{}", t!("Console")),
+        }
+    }
 }
 
 impl App<'_> {
@@ -138,7 +146,7 @@ impl App<'_> {
             self.result_throbber_state.calc_next();
             
             let throbber = Throbber::default()
-                .label("Pending")
+                .label(t!("Pending"))
                 .style(Style::new().fg(THEME.read().ui.secondary_foreground_color))
                 .throbber_set(BRAILLE_DOUBLE)
                 .use_type(WhichUse::Spin);
@@ -197,7 +205,7 @@ impl App<'_> {
                         }
                         ResponseContent::Image(image_response) => match &image_response.image {
                             _ if self.config.is_image_preview_disabled() => {
-                                let image_disabled_paragraph = Paragraph::new("\nImage preview disabled").centered();
+                                let image_disabled_paragraph = Paragraph::new(format!("\n{}", t!("Image preview disabled"))).centered();
                                 frame.render_widget(image_disabled_paragraph, request_result_layout[2]);
                             },
                             Some(image) => {
@@ -212,7 +220,7 @@ impl App<'_> {
                                 frame.render_stateful_widget(StatefulImage::default(), request_result_layout[2], &mut image_static);
                             }
                             None => {
-                                let image_error_paragraph = Paragraph::new("\nCould not decode image")
+                                let image_error_paragraph = Paragraph::new(format!("\n{}", t!("Could not decode image")))
                                     .centered()
                                     .fg(THEME.read().ui.font_color);
                                 frame.render_widget(image_error_paragraph, request_result_layout[2]);

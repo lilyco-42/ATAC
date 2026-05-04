@@ -1,3 +1,4 @@
+use crate::t;
 use crate::app::app::App;
 use crate::app::files::theme::THEME;
 use crate::models::request::Request;
@@ -49,7 +50,7 @@ impl App<'_> {
         let method = http_request.method.clone();
 
         let method_block = Block::new()
-            .title("Method").title_alignment(Alignment::Center)
+            .title(t!("Method")).title_alignment(Alignment::Center)
             .borders(Borders::ALL)
             .padding(Padding::horizontal(1))
             .fg(THEME.read().ui.main_foreground_color);

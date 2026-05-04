@@ -241,18 +241,18 @@ impl AppState {
         match self {
             Normal => {
                 let mut base_events = vec![
-                    ExitApp(EventKeyBinding::new(vec![key_bindings.main_menu.exit, key!(ctrl-c)], t!("Exit"), Some("Exit"))),
+                    ExitApp(EventKeyBinding::new(vec![key_bindings.main_menu.exit, key!(ctrl-c)], t!("Exit"), Some(t!("Exit")))),
 
-                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some("Help"))),
+                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some(t!("Help")))),
 
-                    MoveCollectionCursorUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
-                    MoveCollectionCursorDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
+                    MoveCollectionCursorUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some(t!("Up")))),
+                    MoveCollectionCursorDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some(t!("Down")))),
 
-                    SelectRequestOrExpandCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select"), Some("Select"))),
+                    SelectRequestOrExpandCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select"), Some(t!("Select")))),
                     UnselectRequest(EventKeyBinding::new(vec![key_bindings.main_menu.unselect_request], t!("Unselect"), None)),
                     ExpandCollection(EventKeyBinding::new(vec![key_bindings.main_menu.expand_collection], t!("Expand"), None)),
 
-                    CreateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create element"), Some("Create"))),
+                    CreateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create element"), Some(t!("Create")))),
                     DeleteElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete element"), None)),
                     RenameElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.rename_element], t!("Rename element"), None)),
                     DuplicateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], t!("Duplicate element"), None)),
@@ -280,104 +280,104 @@ impl AppState {
                 base_events
             },
             DisplayingEnvEditor => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
                 EditEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit env variable"), None)),
 
-                EnvVariablesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
-                EnvVariablesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
-                EnvVariablesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some("Left"))),
-                EnvVariablesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some("Right"))),
+                EnvVariablesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some(t!("Up")))),
+                EnvVariablesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some(t!("Down")))),
+                EnvVariablesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some(t!("Left")))),
+                EnvVariablesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some(t!("Right")))),
 
-                CreateEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create env variable"), Some("Create variable"))),
-                DeleteEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete env variable"), Some("Delete variable"))),
+                CreateEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create env variable"), Some(t!("Create variable")))),
+                DeleteEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete env variable"), Some(t!("Delete variable")))),
             ],
             EditingEnvVariable => [
                 vec![
-                    ModifyEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelModifyEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelModifyEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventModifyEnvVariable(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, true)
             ].concat(),
             DisplayingCookies => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
 
-                CookiesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
-                CookiesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
-                CookiesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some("Left"))),
-                CookiesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some("Right"))),
+                CookiesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some(t!("Up")))),
+                CookiesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some(t!("Down")))),
+                CookiesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some(t!("Left")))),
+                CookiesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some(t!("Right")))),
 
-                DeleteCookie(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete cookie"), Some("Delete"))),
+                DeleteCookie(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete cookie"), Some(t!("Delete")))),
             ],
             EditingCookies => vec![
                 Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], t!("Not implemented yet"), None))
             ],
             DisplayingLogs => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
-                ScrollLogsUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll logs up"), Some("Up"))),
-                ScrollLogsDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll logs down"), Some("Down"))),
-                ScrollLogsLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll logs left"), Some("Left"))),
-                ScrollLogsRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll logs right"), Some("Right"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
+                ScrollLogsUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll logs up"), Some(t!("Up")))),
+                ScrollLogsDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll logs down"), Some(t!("Down")))),
+                ScrollLogsLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll logs left"), Some(t!("Left")))),
+                ScrollLogsRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll logs right"), Some(t!("Right")))),
             ],
             ChoosingElementToCreate => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
 
-                ChooseElementToCreateMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
-                ChooseElementToCreateMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
+                ChooseElementToCreateMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some(t!("Left")))),
+                ChooseElementToCreateMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some(t!("Right")))),
 
-                SelectElementToCreate(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select element to create"), Some("Select"))),
+                SelectElementToCreate(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select element to create"), Some(t!("Select")))),
             ],
             CreatingNewCollection => [
                 vec![
-                    CreateNewCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelCreateNewCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    CreateNewCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelCreateNewCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventCreateNewCollection(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             CreatingNewRequest => [
                 vec![
-                    CreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelCreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    CreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelCreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
 
-                    CreatingRequestSelectInputUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_up], t!("Input selection up"), Some("Up"))),
-                    CreatingRequestSelectInputDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_down], t!("Input selection down"), Some("Down"))),
-                    CreatingRequestInputLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Previous"), Some("Left"))),
-                    CreatingRequestInputRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Next"), Some("Right"))),
+                    CreatingRequestSelectInputUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_up], t!("Input selection up"), Some(t!("Up")))),
+                    CreatingRequestSelectInputDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_down], t!("Input selection down"), Some(t!("Down")))),
+                    CreatingRequestInputLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Previous"), Some(t!("Left")))),
+                    CreatingRequestInputRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Next"), Some(t!("Right")))),
 
                     KeyEventCreateNewRequest(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             DeletingCollection => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some("Cancel"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some(t!("Cancel")))),
 
-                DeletingCollectionMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
-                DeletingCollectionMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
+                DeletingCollectionMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some(t!("Left")))),
+                DeletingCollectionMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some(t!("Right")))),
 
-                DeleteCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some("Select"))),
+                DeleteCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some(t!("Select")))),
             ],
             DeletingRequest => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some("Cancel"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some(t!("Cancel")))),
 
-                DeletingRequestMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
-                DeletingRequestMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
+                DeletingRequestMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some(t!("Left")))),
+                DeletingRequestMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some(t!("Right")))),
 
-                DeleteRequest(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some("Select"))),
+                DeleteRequest(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some(t!("Select")))),
 
             ],
             RenamingCollection => [
                 vec![
-                    RenameCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelRenameCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    RenameCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelRenameCollection(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventRenameCollection(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             RenamingRequest => [
                 vec![
-                    RenameRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelRenameRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    RenameRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelRenameRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventRenameRequest(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
@@ -393,16 +393,16 @@ impl AppState {
                 let mut base_events: Vec<AppEvent> = vec![
                     ExitApp(EventKeyBinding::new(vec![key!(ctrl-c)], t!("Exit app"), None)),
 
-                    GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit to main menu"), Some("Quit"))),
-                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some("Help"))),
+                    GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit to main menu"), Some(t!("Quit")))),
+                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some(t!("Help")))),
 
-                    EditUrl(EventKeyBinding::new(vec![key_bindings.request_selected.change_url], t!("Edit URL"), Some("URL"))),
+                    EditUrl(EventKeyBinding::new(vec![key_bindings.request_selected.change_url], t!("Edit URL"), Some(t!("URL")))),
 
                     EditSettings(EventKeyBinding::new(vec![key_bindings.request_selected.request_settings], t!("Request settings"), None)),
 
                     NextView(EventKeyBinding::new(vec![key_bindings.request_selected.next_view], t!("Next view"), None)),
 
-                    SendRequest(EventKeyBinding::new(vec![key_bindings.request_selected.send_request, key_bindings.request_selected.alt_send_request], t!("Send/cancel request"), Some("Send/Cancel"))),
+                    SendRequest(EventKeyBinding::new(vec![key_bindings.request_selected.send_request, key_bindings.request_selected.alt_send_request], t!("Send/cancel request"), Some(t!("Send/Cancel")))),
                 ];
                 
                 if is_there_any_env {
@@ -428,7 +428,7 @@ impl AppState {
                 // Param tabs
                 if params_events_allowed {
                     base_param_tabs_events = vec![
-                        NextParamTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next param tab"), Some("Next tab"))),
+                        NextParamTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next param tab"), Some(t!("Next tab")))),
 
                         ModifyRequestAuthMethod(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_auth_method], t!("Modify auth method"), None)),
                     ];
@@ -436,7 +436,7 @@ impl AppState {
                     if let Some(protocol) = protocol {
                         let protocol_specific = match protocol {
                             Protocol::HttpRequest(_) => vec![
-                                EditMethod(EventKeyBinding::new(vec![key_bindings.request_selected.change_method], t!("Change method"), Some("Method"))),
+                                EditMethod(EventKeyBinding::new(vec![key_bindings.request_selected.change_method], t!("Change method"), Some(t!("Method")))),
                                 ModifyRequestBodyContentType(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_body_content_type], t!("Modify body content-type"), None)),
                             ],
                             Protocol::WsRequest(_) => vec![
@@ -500,9 +500,9 @@ impl AppState {
                             EditRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit message"), None)),
                         ],
                         RequestParamsTabs::Scripts => vec![
-                            EditRequestScript(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit request script"), Some("Edit"))),
-                            RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
-                            RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
+                            EditRequestScript(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit request script"), Some(t!("Edit")))),
+                            RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some(t!("Up")))),
+                            RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some(t!("Down")))),
                         ]
                     };
 
@@ -510,7 +510,7 @@ impl AppState {
                 }
                 else {
                     base_events.push(
-                        NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next result tab"), Some("Next tab"))),
+                        NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next result tab"), Some(t!("Next tab")))),
                     );
                 }
 
@@ -521,7 +521,7 @@ impl AppState {
                         ScrollResultLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll result left"), None)),
                         ScrollResultRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll result right"), None)),
                     
-                        CopyResponsePart(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank response part"), Some("Yank"))),
+                        CopyResponsePart(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank response part"), Some(t!("Yank")))),
                     ];
 
                     if params_events_allowed {
@@ -538,191 +538,191 @@ impl AppState {
             },
             EditingRequestUrl => [
                 vec![
-                    ModifyRequestUrl(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestUrl(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestUrl(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestUrl(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestUrl(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestParam => [
                 vec![
-                    ModifyRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestQueryParam(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, true)
             ].concat(),
             EditingRequestAuthBasicUsername => [
                 vec![
-                    ModifyRequestAuthBasicUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthBasicUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthBasicUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthBasicUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthBasicUsername(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthBasicPassword => [
                 vec![
-                    ModifyRequestAuthBasicPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthBasicPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthBasicPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthBasicPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthBasicPassword(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthBearerToken => [
                 vec![
-                    ModifyRequestAuthBearerToken(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthBearerToken(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthBearerToken(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthBearerToken(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthBearerToken(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthJwtSecret => [
                 vec![
-                    ModifyRequestAuthJwtSecret(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthJwtSecret(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthJwtSecret(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthJwtSecret(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthJwtSecret(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthJwtPayload => [
                 vec![
-                    ModifyRequestAuthJwtPayload(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthJwtPayload(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthJwtPayload(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthJwtPayload(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthJwtPayload(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, false, false)
             ].concat(),
             EditingRequestAuthDigestUsername => [
                 vec![
-                    ModifyRequestAuthDigestUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestUsername(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestUsername(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthDigestPassword => [
                 vec![
-                    ModifyRequestAuthDigestPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestPassword(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestPassword(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthDigestDomains => [
                 vec![
-                    ModifyRequestAuthDigestDomains(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestDomains(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestDomains(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestDomains(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestDomains(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthDigestRealm => [
                 vec![
-                    ModifyRequestAuthDigestRealm(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestRealm(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestRealm(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestRealm(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestRealm(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthDigestNonce => [
                 vec![
-                    ModifyRequestAuthDigestNonce(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestNonce(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestNonce(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestNonce(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestNonce(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestAuthDigestOpaque => [
                 vec![
-                    ModifyRequestAuthDigestOpaque(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestAuthDigestOpaque(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestAuthDigestOpaque(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestAuthDigestOpaque(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestAuthDigestOpaque(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestHeader => [
                 vec![
-                    ModifyRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestHeader(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, true)
             ].concat(),
             EditingRequestBodyTable => [
                 vec![
-                    ModifyRequestBodyTable(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestBodyTable(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestBodyTable(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestBodyTable(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestBodyTable(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, true)
             ].concat(),
             EditingRequestBodyFile => [
                 vec![
-                    ModifyRequestBodyFile(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestBodyFile(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestBodyFile(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestBodyFile(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestBodyFile(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, false)
             ].concat(),
             EditingRequestBodyString => [
                 vec![
-                    ModifyRequestBodyString(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestBodyString(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestBodyString(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestBodyString(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestBodyString(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, false, false)
             ].concat(),
             EditingRequestMessage => [
                 vec![
-                    ModifyRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestMessage(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, false, false)
             ].concat(),
             EditingPreRequestScript => [
                 vec![
-                    ModifyRequestPreRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestPreRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestPreRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestPreRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestPreRequestScript(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, false, false)
             ].concat(),
             EditingPostRequestScript => [
                 vec![
-                    ModifyRequestPostRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some("Confirm"))),
-                    CancelEditRequestPostRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
+                    ModifyRequestPostRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_area], t!("Confirm"), Some(t!("Confirm")))),
+                    CancelEditRequestPostRequestScript(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some(t!("Cancel")))),
                     KeyEventEditRequestPostRequestScript(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, false, false)
             ].concat(),
             EditingRequestSettings => vec![
-                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some("Cancel"))),
+                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some(t!("Cancel")))),
 
-                RequestSettingsMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
-                RequestSettingsMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
-                RequestSettingsToggleSettingLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Toggle setting"), Some("Toggle left"))),
-                RequestSettingsToggleSettingRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Toggle setting"), Some("Toggle right"))),
+                RequestSettingsMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some(t!("Up")))),
+                RequestSettingsMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some(t!("Down")))),
+                RequestSettingsToggleSettingLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Toggle setting"), Some(t!("Toggle left")))),
+                RequestSettingsToggleSettingRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Toggle setting"), Some(t!("Toggle right")))),
 
-                ModifyRequestSettings(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Confirm"), Some("Confirm"))),
+                ModifyRequestSettings(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Confirm"), Some(t!("Confirm")))),
             ],
             ChoosingRequestExportFormat => vec![
-                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
 
-                RequestExportFormatMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
-                RequestExportFormatMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
+                RequestExportFormatMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some(t!("Left")))),
+                RequestExportFormatMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some(t!("Right")))),
 
-                SelectRequestExportFormat(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select export format"), Some("Select"))),
+                SelectRequestExportFormat(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select export format"), Some(t!("Select")))),
             ],
             DisplayingRequestExport => vec![
-                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some(t!("Quit")))),
 
                 ScrollRequestExportUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll request export up"), None)),
                 ScrollRequestExportDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll request export down"), None)),
                 ScrollRequestExportLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll request export left"), None)),
                 ScrollRequestExportRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll request export right"), None)),
 
-                CopyRequestExport(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank request export"), Some("Yank"))),
+                CopyRequestExport(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank request export"), Some(t!("Yank")))),
             ]
         }
     }
@@ -739,10 +739,10 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
 
             if !insert_mode_only {
                 initial.extend(vec![
-                    Documentation(EventKeyBinding::new(vec![key!(esc)], t!("Normal mode"), Some("Esc"))),
+                    Documentation(EventKeyBinding::new(vec![key!(esc)], t!("Normal mode"), Some(t!("Esc")))),
                     Documentation(EventKeyBinding::new(vec![key!(i)], t!("Enter insert mode"), None)),
                     Documentation(EventKeyBinding::new(vec![key!(v)], t!("Enter visual mode"), None)),
-                    Documentation(EventKeyBinding::new(vec![key!('/')], t!("Start search"), Some("Search"))),
+                    Documentation(EventKeyBinding::new(vec![key!('/')], t!("Start search"), Some(t!("Search")))),
                 ]);
             }
 
@@ -750,8 +750,8 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
             Documentation(EventKeyBinding::new(vec![key!(y)], t!("Copy selection"), None)),
             Documentation(EventKeyBinding::new(vec![key!(y), key!(y)], t!("Copy line"), None)),
             Documentation(EventKeyBinding::new(vec![key!(p)], t!("Paste"), None)),
-            Documentation(EventKeyBinding::new(vec![key!(u)], t!("Undo"), Some("Undo"))),
-            Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some("Redo"))),
+            Documentation(EventKeyBinding::new(vec![key!(u)], t!("Undo"), Some(t!("Undo")))),
+            Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some(t!("Redo")))),
             Documentation(EventKeyBinding::new(vec![key!(w)], t!("Move to next word"), None)),
             Documentation(EventKeyBinding::new(vec![key!(e)], t!("Move to end of word"), None)),
             Documentation(EventKeyBinding::new(vec![key!(b)], t!("Move to previous word"), None)),
@@ -775,8 +775,8 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
             }
 
             initial.extend(vec![
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-u)], t!("Undo"), Some("Undo"))),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some("Redo"))),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-u)], t!("Undo"), Some(t!("Undo")))),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some(t!("Redo")))),
                 Documentation(EventKeyBinding::new(vec![key!(ctrl-y)], t!("Paste"), None)),
                 Documentation(EventKeyBinding::new(vec![key!(backspace)], t!("Remove char from search"), None)),
                 Documentation(EventKeyBinding::new(vec![key!(ctrl-k)], t!("Delete to end of line"), None)),
@@ -794,7 +794,7 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
 
             if !single_line {
                 initial.extend(vec![
-                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], t!("Start search"), Some("Search"))),
+                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], t!("Start search"), Some(t!("Search")))),
                     Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], t!("Find next match"), None)),
                     Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Find previous match"), None)),
                     Documentation(EventKeyBinding::new(vec![key!(enter)], t!("Select current search result"), None)),
@@ -824,16 +824,16 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
             }
 
             initial.extend(vec![
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_start], t!("Move cursor line start"), Some("Home"))),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_end], t!("Move cursor line end"), Some("End"))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_start], t!("Move cursor line start"), Some(t!("Home")))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_end], t!("Move cursor line end"), Some(t!("End")))),
                 Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_left], t!("Skip word left"), None)),
                 Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_right], t!("Skip word right"), None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.undo], t!("Undo"), Some("Undo"))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.undo], t!("Undo"), Some(t!("Undo")))),
                 Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.redo], t!("Redo"), None)),
             ]);
 
             if !insert_mode_only {
-                initial.push(Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.search], t!("Search"), Some("Search"))));
+                initial.push(Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.search], t!("Search"), Some(t!("Search")))));
             }
         }
     }

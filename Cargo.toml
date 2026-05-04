@@ -12,6 +12,9 @@ homepage = "https://github.com/Julien-cpsn/ATAC"
 repository = "https://github.com/Julien-cpsn/ATAC"
 keywords = ["API", "Client", "TUI", "Postman", "Insomnia"]
 
+[package.metadata.binstall]
+pkg-url = "https://github.com/lilyco-42/ATAC/releases/download/v{ version }/{ name }-{ target }.{ archive_format }"
+
 exclude = [
     ".github",
     "gifs",

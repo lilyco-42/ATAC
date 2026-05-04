@@ -241,38 +241,38 @@ impl AppState {
         match self {
             Normal => {
                 let mut base_events = vec![
-                    ExitApp(EventKeyBinding::new(vec![key_bindings.main_menu.exit, key!(ctrl-c)], "Exit", Some("Exit"))),
+                    ExitApp(EventKeyBinding::new(vec![key_bindings.main_menu.exit, key!(ctrl-c)], t!("Exit"), Some("Exit"))),
 
-                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], "Display help", Some("Help"))),
+                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some("Help"))),
 
                     MoveCollectionCursorUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
                     MoveCollectionCursorDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
 
-                    SelectRequestOrExpandCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], "Select", Some("Select"))),
-                    UnselectRequest(EventKeyBinding::new(vec![key_bindings.main_menu.unselect_request], "Unselect", None)),
-                    ExpandCollection(EventKeyBinding::new(vec![key_bindings.main_menu.expand_collection], "Expand", None)),
+                    SelectRequestOrExpandCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select"), Some("Select"))),
+                    UnselectRequest(EventKeyBinding::new(vec![key_bindings.main_menu.unselect_request], t!("Unselect"), None)),
+                    ExpandCollection(EventKeyBinding::new(vec![key_bindings.main_menu.expand_collection], t!("Expand"), None)),
 
-                    CreateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], "Create element", Some("Create"))),
-                    DeleteElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete element", None)),
-                    RenameElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.rename_element], "Rename element", None)),
-                    DuplicateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], "Duplicate element", None)),
+                    CreateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create element"), Some("Create"))),
+                    DeleteElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete element"), None)),
+                    RenameElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.rename_element], t!("Rename element"), None)),
+                    DuplicateElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], t!("Duplicate element"), None)),
 
-                    MoveElementUp(EventKeyBinding::new(vec![key_bindings.main_menu.move_request_up], "Move request up", None)),
-                    MoveElementDown(EventKeyBinding::new(vec![key_bindings.main_menu.move_request_down], "Move request down", None)),
+                    MoveElementUp(EventKeyBinding::new(vec![key_bindings.main_menu.move_request_up], t!("Move request up"), None)),
+                    MoveElementDown(EventKeyBinding::new(vec![key_bindings.main_menu.move_request_down], t!("Move request down"), None)),
                 ];
 
                 if is_there_any_env {
                     let env_events = vec![
-                        NextEnvironment(EventKeyBinding::new(vec![key_bindings.main_menu.next_environment], "Next environment", None)),
-                        DisplayEnvEditor(EventKeyBinding::new(vec![key_bindings.main_menu.display_env_editor], "Environment editor", None)),
+                        NextEnvironment(EventKeyBinding::new(vec![key_bindings.main_menu.next_environment], t!("Next environment"), None)),
+                        DisplayEnvEditor(EventKeyBinding::new(vec![key_bindings.main_menu.display_env_editor], t!("Environment editor"), None)),
                     ];
                     
                     base_events.extend(env_events);
                 }
 
                 let other_events = vec![
-                    DisplayCookies(EventKeyBinding::new(vec![key_bindings.main_menu.display_cookies], "Display cookies", None)),
-                    DisplayLogs(EventKeyBinding::new(vec![key_bindings.main_menu.display_logs], "Display logs", None)),
+                    DisplayCookies(EventKeyBinding::new(vec![key_bindings.main_menu.display_cookies], t!("Display cookies"), None)),
+                    DisplayLogs(EventKeyBinding::new(vec![key_bindings.main_menu.display_logs], t!("Display logs"), None)),
                 ];
                 
                 base_events.extend(other_events);
@@ -280,16 +280,16 @@ impl AppState {
                 base_events
             },
             DisplayingEnvEditor => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
-                EditEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit env variable", None)),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
+                EditEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit env variable"), None)),
 
                 EnvVariablesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
                 EnvVariablesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
                 EnvVariablesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some("Left"))),
                 EnvVariablesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some("Right"))),
 
-                CreateEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], "Create env variable", Some("Create variable"))),
-                DeleteEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete env variable", Some("Delete variable"))),
+                CreateEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create env variable"), Some("Create variable"))),
+                DeleteEnvVariable(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete env variable"), Some("Delete variable"))),
             ],
             EditingEnvVariable => [
                 vec![
@@ -300,32 +300,32 @@ impl AppState {
                 generate_text_input_documentation(key_bindings.generic.text_input.mode, true, true)
             ].concat(),
             DisplayingCookies => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
 
                 CookiesMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
                 CookiesMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
                 CookiesMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), Some("Left"))),
                 CookiesMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), Some("Right"))),
 
-                DeleteCookie(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete cookie", Some("Delete"))),
+                DeleteCookie(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete cookie"), Some("Delete"))),
             ],
             EditingCookies => vec![
-                Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], "Not implemented yet", None))
+                Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], t!("Not implemented yet"), None))
             ],
             DisplayingLogs => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
                 ScrollLogsUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll logs up"), Some("Up"))),
-                ScrollLogsDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], "Scroll logs down", Some("Down"))),
-                ScrollLogsLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], "Scroll logs left", Some("Left"))),
-                ScrollLogsRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], "Scroll logs right", Some("Right"))),
+                ScrollLogsDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll logs down"), Some("Down"))),
+                ScrollLogsLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll logs left"), Some("Left"))),
+                ScrollLogsRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll logs right"), Some("Right"))),
             ],
             ChoosingElementToCreate => vec![
-                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
+                GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
 
                 ChooseElementToCreateMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
                 ChooseElementToCreateMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
 
-                SelectElementToCreate(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], "Select element to create", Some("Select"))),
+                SelectElementToCreate(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select element to create"), Some("Select"))),
             ],
             CreatingNewCollection => [
                 vec![
@@ -340,10 +340,10 @@ impl AppState {
                     CreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.save_and_quit_single_line], t!("Confirm"), Some("Confirm"))),
                     CancelCreateNewRequest(EventKeyBinding::new(vec![key_bindings.generic.text_input.quit_without_saving], t!("Cancel"), Some("Cancel"))),
 
-                    CreatingRequestSelectInputUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_up], "Input selection up", Some("Up"))),
-                    CreatingRequestSelectInputDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_down], "Input selection down", Some("Down"))),
-                    CreatingRequestInputLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], "Previous", Some("Left"))),
-                    CreatingRequestInputRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], "Next", Some("Right"))),
+                    CreatingRequestSelectInputUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_up], t!("Input selection up"), Some("Up"))),
+                    CreatingRequestSelectInputDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.alt_move_cursor_down], t!("Input selection down"), Some("Down"))),
+                    CreatingRequestInputLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Previous"), Some("Left"))),
+                    CreatingRequestInputRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Next"), Some("Right"))),
 
                     KeyEventCreateNewRequest(EventKeyBinding::new(vec![], t!("Any input"), None)),
                 ],
@@ -355,7 +355,7 @@ impl AppState {
                 DeletingCollectionMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
                 DeletingCollectionMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
 
-                DeleteCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], "Select choice", Some("Select"))),
+                DeleteCollection(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some("Select"))),
             ],
             DeletingRequest => vec![
                 GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Cancel"), Some("Cancel"))),
@@ -363,7 +363,7 @@ impl AppState {
                 DeletingRequestMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
                 DeletingRequestMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
 
-                DeleteRequest(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], "Select choice", Some("Select"))),
+                DeleteRequest(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select choice"), Some("Select"))),
 
             ],
             RenamingCollection => [
@@ -391,33 +391,33 @@ impl AppState {
                 };
 
                 let mut base_events: Vec<AppEvent> = vec![
-                    ExitApp(EventKeyBinding::new(vec![key!(ctrl-c)], "Exit app", None)),
+                    ExitApp(EventKeyBinding::new(vec![key!(ctrl-c)], t!("Exit app"), None)),
 
-                    GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit to main menu", Some("Quit"))),
-                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], "Display help", Some("Help"))),
+                    GoBackToLastState(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit to main menu"), Some("Quit"))),
+                    Documentation(EventKeyBinding::new(vec![key_bindings.generic.display_help], t!("Display help"), Some("Help"))),
 
-                    EditUrl(EventKeyBinding::new(vec![key_bindings.request_selected.change_url], "Edit URL", Some("URL"))),
+                    EditUrl(EventKeyBinding::new(vec![key_bindings.request_selected.change_url], t!("Edit URL"), Some("URL"))),
 
-                    EditSettings(EventKeyBinding::new(vec![key_bindings.request_selected.request_settings], "Request settings", None)),
+                    EditSettings(EventKeyBinding::new(vec![key_bindings.request_selected.request_settings], t!("Request settings"), None)),
 
-                    NextView(EventKeyBinding::new(vec![key_bindings.request_selected.next_view], "Next view", None)),
+                    NextView(EventKeyBinding::new(vec![key_bindings.request_selected.next_view], t!("Next view"), None)),
 
-                    SendRequest(EventKeyBinding::new(vec![key_bindings.request_selected.send_request, key_bindings.request_selected.alt_send_request], "Send/cancel request", Some("Send/Cancel"))),
+                    SendRequest(EventKeyBinding::new(vec![key_bindings.request_selected.send_request, key_bindings.request_selected.alt_send_request], t!("Send/cancel request"), Some("Send/Cancel"))),
                 ];
                 
                 if is_there_any_env {
                     let env_events = vec![
-                        NextEnvironment(EventKeyBinding::new(vec![key_bindings.main_menu.next_environment], "Next environment", None)),
-                        DisplayEnvEditor(EventKeyBinding::new(vec![key_bindings.main_menu.display_env_editor], "Environment editor", None)),
+                        NextEnvironment(EventKeyBinding::new(vec![key_bindings.main_menu.next_environment], t!("Next environment"), None)),
+                        DisplayEnvEditor(EventKeyBinding::new(vec![key_bindings.main_menu.display_env_editor], t!("Environment editor"), None)),
                     ];
                     
                     base_events.extend(env_events);
                 }
                 
                 let other_events = vec![
-                    DisplayCookies(EventKeyBinding::new(vec![key_bindings.main_menu.display_cookies], "Display cookies", None)),
-                    DisplayLogs(EventKeyBinding::new(vec![key_bindings.main_menu.display_logs], "Display logs", None)),
-                    ExportRequest(EventKeyBinding::new(vec![key_bindings.request_selected.export_request], "Export request", None)),
+                    DisplayCookies(EventKeyBinding::new(vec![key_bindings.main_menu.display_cookies], t!("Display cookies"), None)),
+                    DisplayLogs(EventKeyBinding::new(vec![key_bindings.main_menu.display_logs], t!("Display logs"), None)),
+                    ExportRequest(EventKeyBinding::new(vec![key_bindings.request_selected.export_request], t!("Export request"), None)),
                 ];
                 
                 base_events.extend(other_events);
@@ -428,19 +428,19 @@ impl AppState {
                 // Param tabs
                 if params_events_allowed {
                     base_param_tabs_events = vec![
-                        NextParamTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], "Next param tab", Some("Next tab"))),
+                        NextParamTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next param tab"), Some("Next tab"))),
 
-                        ModifyRequestAuthMethod(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_auth_method], "Modify auth method", None)),
+                        ModifyRequestAuthMethod(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_auth_method], t!("Modify auth method"), None)),
                     ];
 
                     if let Some(protocol) = protocol {
                         let protocol_specific = match protocol {
                             Protocol::HttpRequest(_) => vec![
-                                EditMethod(EventKeyBinding::new(vec![key_bindings.request_selected.change_method], "Change method", Some("Method"))),
-                                ModifyRequestBodyContentType(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_body_content_type], "Modify body content-type", None)),
+                                EditMethod(EventKeyBinding::new(vec![key_bindings.request_selected.change_method], t!("Change method"), Some("Method"))),
+                                ModifyRequestBodyContentType(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_body_content_type], t!("Modify body content-type"), None)),
                             ],
                             Protocol::WsRequest(_) => vec![
-                                ModifyRequestMessageType(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_message_type], "Modify message type", None)),
+                                ModifyRequestMessageType(EventKeyBinding::new(vec![key_bindings.request_selected.param_tabs.change_message_type], t!("Modify message type"), None)),
                             ]
                         };
 
@@ -450,20 +450,20 @@ impl AppState {
 
                     let param_tabs_events = match request_param_tab {
                         RequestParamsTabs::QueryParams => vec![
-                            EditRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit query param", None)),
+                            EditRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit query param"), None)),
 
                             RequestQueryParamsMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), None)),
                             RequestQueryParamsMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), None)),
                             RequestQueryParamsMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), None)),
                             RequestQueryParamsMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), None)),
 
-                            CreateRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], "Create query param", None)),
-                            DeleteRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete query param", None)),
-                            ToggleRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], "Toggle query param", None)),
-                            DuplicateRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], "Duplicate query param", None)),
+                            CreateRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create query param"), None)),
+                            DeleteRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete query param"), None)),
+                            ToggleRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], t!("Toggle query param"), None)),
+                            DuplicateRequestQueryParam(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], t!("Duplicate query param"), None)),
                         ],
                         RequestParamsTabs::Auth => vec![
-                            EditRequestAuth(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit auth element", None)),
+                            EditRequestAuth(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit auth element"), None)),
 
                             RequestAuthMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), None)),
                             RequestAuthMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), None)),
@@ -471,36 +471,36 @@ impl AppState {
                             RequestAuthMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), None)),
                         ],
                         RequestParamsTabs::Headers => vec![
-                            EditRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit header", None)),
+                            EditRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit header"), None)),
 
                             RequestHeadersMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), None)),
                             RequestHeadersMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), None)),
                             RequestHeadersMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), None)),
                             RequestHeadersMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), None)),
 
-                            CreateRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], "Create header", None)),
-                            DeleteRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete header", None)),
-                            ToggleRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], "Toggle header", None)),
-                            DuplicateRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], "Duplicate header", None)),
+                            CreateRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create header"), None)),
+                            DeleteRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete header"), None)),
+                            ToggleRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], t!("Toggle header"), None)),
+                            DuplicateRequestHeader(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], t!("Duplicate header"), None)),
                         ],
                         RequestParamsTabs::Body => vec![
-                            EditRequestBody(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit body", None)),
+                            EditRequestBody(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit body"), None)),
 
                             RequestBodyTableMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), None)),
                             RequestBodyTableMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), None)),
                             RequestBodyTableMoveLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move left"), None)),
                             RequestBodyTableMoveRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move right"), None)),
 
-                            CreateRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], "Create form element", None)),
-                            DeleteRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], "Delete form element", None)),
-                            ToggleRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], "Toggle form element", None)),
-                            DuplicateRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], "Duplicate form element", None)),
+                            CreateRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.create_element], t!("Create form element"), None)),
+                            DeleteRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.delete_element], t!("Delete form element"), None)),
+                            ToggleRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.toggle_element], t!("Toggle form element"), None)),
+                            DuplicateRequestBodyTableElement(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.duplicate_element], t!("Duplicate form element"), None)),
                         ],
                         RequestParamsTabs::Message => vec![
-                            EditRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit message", None)),
+                            EditRequestMessage(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit message"), None)),
                         ],
                         RequestParamsTabs::Scripts => vec![
-                            EditRequestScript(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], "Edit request script", Some("Edit"))),
+                            EditRequestScript(EventKeyBinding::new(vec![key_bindings.generic.list_and_table_actions.edit_element], t!("Edit request script"), Some("Edit"))),
                             RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
                             RequestScriptMove(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
                         ]
@@ -510,23 +510,23 @@ impl AppState {
                 }
                 else {
                     base_events.push(
-                        NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], "Next result tab", Some("Next tab"))),
+                        NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.param_next_tab], t!("Next result tab"), Some("Next tab"))),
                     );
                 }
 
                 if result_events_allowed {
                     base_result_tabs_events = vec![
-                        ScrollResultUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], "Scroll result up", None)),
-                        ScrollResultDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], "Scroll result down", None)),
-                        ScrollResultLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], "Scroll result left", None)),
-                        ScrollResultRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], "Scroll result right", None)),
+                        ScrollResultUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll result up"), None)),
+                        ScrollResultDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll result down"), None)),
+                        ScrollResultLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll result left"), None)),
+                        ScrollResultRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll result right"), None)),
                     
-                        CopyResponsePart(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], "Yank response part", Some("Yank"))),
+                        CopyResponsePart(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank response part"), Some("Yank"))),
                     ];
 
                     if params_events_allowed {
                         base_events.push(
-                            NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.result_next_tab], "Next result tab", None)),
+                            NextResultTab(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.result_next_tab], t!("Next result tab"), None)),
                         )
                     }
                 }
@@ -701,28 +701,28 @@ impl AppState {
 
                 RequestSettingsMoveUp(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_up], t!("Move up"), Some("Up"))),
                 RequestSettingsMoveDown(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_down], t!("Move down"), Some("Down"))),
-                RequestSettingsToggleSettingLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], "Toggle setting", Some("Toggle left"))),
-                RequestSettingsToggleSettingRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], "Toggle setting", Some("Toggle right"))),
+                RequestSettingsToggleSettingLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Toggle setting"), Some("Toggle left"))),
+                RequestSettingsToggleSettingRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Toggle setting"), Some("Toggle right"))),
 
                 ModifyRequestSettings(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Confirm"), Some("Confirm"))),
             ],
             ChoosingRequestExportFormat => vec![
-                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
+                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
 
                 RequestExportFormatMoveCursorLeft(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_left], t!("Move selection left"), Some("Left"))),
                 RequestExportFormatMoveCursorRight(EventKeyBinding::new(vec![key_bindings.generic.navigation.move_cursor_right], t!("Move selection right"), Some("Right"))),
 
-                SelectRequestExportFormat(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], "Select export format", Some("Select"))),
+                SelectRequestExportFormat(EventKeyBinding::new(vec![key_bindings.generic.navigation.select], t!("Select export format"), Some("Select"))),
             ],
             DisplayingRequestExport => vec![
-                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], "Quit", Some("Quit"))),
+                GoBackToRequestMenu(EventKeyBinding::new(vec![key_bindings.generic.navigation.go_back], t!("Quit"), Some("Quit"))),
 
-                ScrollRequestExportUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], "Scroll request export up", None)),
-                ScrollRequestExportDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], "Scroll request export down", None)),
-                ScrollRequestExportLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], "Scroll request export left", None)),
-                ScrollRequestExportRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], "Scroll request export right", None)),
+                ScrollRequestExportUp(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_up], t!("Scroll request export up"), None)),
+                ScrollRequestExportDown(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_down], t!("Scroll request export down"), None)),
+                ScrollRequestExportLeft(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_left], t!("Scroll request export left"), None)),
+                ScrollRequestExportRight(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.scroll_right], t!("Scroll request export right"), None)),
 
-                CopyRequestExport(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], "Yank request export", Some("Yank"))),
+                CopyRequestExport(EventKeyBinding::new(vec![key_bindings.request_selected.result_tabs.yank_response_part], t!("Yank request export"), Some("Yank"))),
             ]
         }
     }
@@ -734,71 +734,71 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
     match text_input_mode {
         TextAreaMode::Vim => {
             if !single_line {
-                initial.push(Documentation(EventKeyBinding::new(vec![key!(ctrl-e)], "System editor", None)));
+                initial.push(Documentation(EventKeyBinding::new(vec![key!(ctrl-e)], t!("System editor"), None)));
             }
 
             if !insert_mode_only {
                 initial.extend(vec![
-                    Documentation(EventKeyBinding::new(vec![key!(esc)], "Normal mode", Some("Esc"))),
-                    Documentation(EventKeyBinding::new(vec![key!(i)], "Enter insert mode", None)),
-                    Documentation(EventKeyBinding::new(vec![key!(v)], "Enter visual mode", None)),
-                    Documentation(EventKeyBinding::new(vec![key!('/')], "Start search", Some("Search"))),
+                    Documentation(EventKeyBinding::new(vec![key!(esc)], t!("Normal mode"), Some("Esc"))),
+                    Documentation(EventKeyBinding::new(vec![key!(i)], t!("Enter insert mode"), None)),
+                    Documentation(EventKeyBinding::new(vec![key!(v)], t!("Enter visual mode"), None)),
+                    Documentation(EventKeyBinding::new(vec![key!('/')], t!("Start search"), Some("Search"))),
                 ]);
             }
 
         initial.extend(vec![
-            Documentation(EventKeyBinding::new(vec![key!(y)], "Copy selection", None)),
-            Documentation(EventKeyBinding::new(vec![key!(y), key!(y)], "Copy line", None)),
-            Documentation(EventKeyBinding::new(vec![key!(p)], "Paste", None)),
-            Documentation(EventKeyBinding::new(vec![key!(u)], "Undo", Some("Undo"))),
-            Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], "Redo", Some("Redo"))),
-            Documentation(EventKeyBinding::new(vec![key!(w)], "Move to next word", None)),
-            Documentation(EventKeyBinding::new(vec![key!(e)], "Move to end of word", None)),
-            Documentation(EventKeyBinding::new(vec![key!(b)], "Move to previous word", None)),
-            Documentation(EventKeyBinding::new(vec![key!(0)], "Move to start of line", None)),
-            Documentation(EventKeyBinding::new(vec![key!('$')], "Move to end of line", None)),
-            Documentation(EventKeyBinding::new(vec![key!(g), key!(g)], "Move to first line", None)),
-            Documentation(EventKeyBinding::new(vec![key!(G)], "Move to last line", None)),
-            Documentation(EventKeyBinding::new(vec![key!(a)], "Append after cursor", None)),
-            Documentation(EventKeyBinding::new(vec![key!(o)], "Insert line below", None)),
-            Documentation(EventKeyBinding::new(vec![key!(O)], "Insert line above", None)),
-            Documentation(EventKeyBinding::new(vec![key!(enter)], "Insert line break", None)),
-            Documentation(EventKeyBinding::new(vec![key!(x)], "Delete char", None)),
-            Documentation(EventKeyBinding::new(vec![key!(d), key!(d)], "Delete line", None)),
-            Documentation(EventKeyBinding::new(vec![key!(D)], "Delete to end of line", None)),
-            Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], "Many other vim commands...", None)),
+            Documentation(EventKeyBinding::new(vec![key!(y)], t!("Copy selection"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(y), key!(y)], t!("Copy line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(p)], t!("Paste"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(u)], t!("Undo"), Some("Undo"))),
+            Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some("Redo"))),
+            Documentation(EventKeyBinding::new(vec![key!(w)], t!("Move to next word"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(e)], t!("Move to end of word"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(b)], t!("Move to previous word"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(0)], t!("Move to start of line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!('$')], t!("Move to end of line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(g), key!(g)], t!("Move to first line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(G)], t!("Move to last line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(a)], t!("Append after cursor"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(o)], t!("Insert line below"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(O)], t!("Insert line above"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(enter)], t!("Insert line break"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(x)], t!("Delete char"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(d), key!(d)], t!("Delete line"), None)),
+            Documentation(EventKeyBinding::new(vec![key!(D)], t!("Delete to end of line"), None)),
+            Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], t!("Many other vim commands..."), None)),
           ]);
         },
         TextAreaMode::Emacs => {
             if !single_line {
-                initial.push(Documentation(EventKeyBinding::new(vec![key!(alt-e)], "System editor", None)));
+                initial.push(Documentation(EventKeyBinding::new(vec![key!(alt-e)], t!("System editor"), None)));
             }
 
             initial.extend(vec![
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-u)], "Undo", Some("Undo"))),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], "Redo", Some("Redo"))),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-y)], "Paste", None)),
-                Documentation(EventKeyBinding::new(vec![key!(backspace)], "Remove char from search", None)),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-k)], "Delete to end of line", None)),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-o)], "Insert line break above", None)),
-                Documentation(EventKeyBinding::new(vec![key!(enter)], "Insert line break", None)),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-j)], "Insert line break", None)),
-                Documentation(EventKeyBinding::new(vec![key!(backspace)], "Delete previous char", None)),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-h)], "Delete previous char", None)),
-                Documentation(EventKeyBinding::new(vec![key!(backspace)], "Delete next char", None)),
-                Documentation(EventKeyBinding::new(vec![key!(ctrl-d)], "Delete next char", None)),
-                Documentation(EventKeyBinding::new(vec![key!(alt-d)], "Delete next word", None)),
-                Documentation(EventKeyBinding::new(vec![key!(alt-backspace)], "Delete previous word", None)),
-                Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], "Many other emacs shortcuts...", None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-u)], t!("Undo"), Some("Undo"))),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Redo"), Some("Redo"))),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-y)], t!("Paste"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(backspace)], t!("Remove char from search"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-k)], t!("Delete to end of line"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-o)], t!("Insert line break above"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(enter)], t!("Insert line break"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-j)], t!("Insert line break"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(backspace)], t!("Delete previous char"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-h)], t!("Delete previous char"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(backspace)], t!("Delete next char"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(ctrl-d)], t!("Delete next char"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(alt-d)], t!("Delete next word"), None)),
+                Documentation(EventKeyBinding::new(vec![key!(alt-backspace)], t!("Delete previous word"), None)),
+                Documentation(EventKeyBinding::new(vec![*EMPTY_KEY], t!("Many other emacs shortcuts..."), None)),
             ]);
 
             if !single_line {
                 initial.extend(vec![
-                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], "Start search", Some("Search"))),
-                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], "Find next match", None)),
-                    Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], "Find previous match", None)),
-                    Documentation(EventKeyBinding::new(vec![key!(enter)], "Select current search result", None)),
-                    Documentation(EventKeyBinding::new(vec![key!(ctrl-g)], "Stop search", None)),
+                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], t!("Start search"), Some("Search"))),
+                    Documentation(EventKeyBinding::new(vec![key!(ctrl-s)], t!("Find next match"), None)),
+                    Documentation(EventKeyBinding::new(vec![key!(ctrl-r)], t!("Find previous match"), None)),
+                    Documentation(EventKeyBinding::new(vec![key!(enter)], t!("Select current search result"), None)),
+                    Documentation(EventKeyBinding::new(vec![key!(ctrl-g)], t!("Stop search"), None)),
                 ]);
             }
         }
@@ -810,30 +810,30 @@ fn generate_text_input_documentation(text_input_mode: TextAreaMode, single_line:
             };
 
             initial.extend(vec![
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.delete_backward], "Delete char backward", None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.delete_forward], "Delete char forward", None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_left], "Move cursor left", None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_right], "Move cursor right", None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.delete_backward], t!("Delete char backward"), None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.delete_forward], t!("Delete char forward"), None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_left], t!("Move cursor left"), None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_right], t!("Move cursor right"), None)),
             ]);
 
             if !single_line {
                 initial.extend(vec![
-                    Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_up], "Move cursor up", None)),
-                    Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_down], "Move cursor down", None)),
+                    Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_up], t!("Move cursor up"), None)),
+                    Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_down], t!("Move cursor down"), None)),
                 ]);
             }
 
             initial.extend(vec![
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_start], "Move cursor line start", Some("Home"))),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_end], "Move cursor line end", Some("End"))),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_left], "Skip word left", None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_right], "Skip word right", None)),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.undo], "Undo", Some("Undo"))),
-                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.redo], "Redo", None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_start], t!("Move cursor line start"), Some("Home"))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.move_cursor_line_end], t!("Move cursor line end"), Some("End"))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_left], t!("Skip word left"), None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.skip_word_right], t!("Skip word right"), None)),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.undo], t!("Undo"), Some("Undo"))),
+                Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.redo], t!("Redo"), None)),
             ]);
 
             if !insert_mode_only {
-                initial.push(Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.search], "Search", Some("Search"))));
+                initial.push(Documentation(EventKeyBinding::new(vec![custom_text_area_bindings.search], t!("Search"), Some("Search"))));
             }
         }
     }
@@ -899,7 +899,7 @@ impl App<'_> {
                 let collection_name = &self.collections[collection_index].name;
 
                 Line::from(vec![
-                    Span::raw("Collection > ").fg(THEME.read().ui.secondary_foreground_color),
+                    Span::raw(t!("Collection > ")).fg(THEME.read().ui.secondary_foreground_color),
                     Span::raw(format!("{} > ", collection_name)).fg(THEME.read().ui.secondary_foreground_color),
                     Span::raw(self.state.to_string()).fg(THEME.read().ui.font_color).bg(THEME.read().ui.main_background_color)
                 ])
@@ -910,7 +910,7 @@ impl App<'_> {
                 let selected_request = &self.collections[selected_request_index[0]].requests[selected_request_index[1]].read();
 
                 Line::from(vec![
-                    Span::raw("Request > ").fg(THEME.read().ui.secondary_foreground_color),
+                    Span::raw(t!("Request > ")).fg(THEME.read().ui.secondary_foreground_color),
                     Span::raw(format!("{} > ", selected_request.name)).fg(THEME.read().ui.secondary_foreground_color),
                     Span::raw(self.state.to_string()).fg(THEME.read().ui.font_color).bg(THEME.read().ui.main_background_color)
                 ])
@@ -921,7 +921,7 @@ impl App<'_> {
                 let env = local_env.read();
 
                 Line::from(vec![
-                    Span::raw("Environment editor > ").fg(THEME.read().ui.secondary_foreground_color),
+                    Span::raw(t!("Environment editor > ")).fg(THEME.read().ui.secondary_foreground_color),
                     Span::raw(env.name.clone()).fg(THEME.read().ui.font_color).bg(THEME.read().ui.main_background_color)
                 ])
             },
@@ -945,13 +945,13 @@ impl App<'_> {
 
                 if self.state == SelectedRequest {
                     Line::from(vec![
-                        Span::raw("Request > ").fg(THEME.read().ui.secondary_foreground_color),
+                        Span::raw(t!("Request > ")).fg(THEME.read().ui.secondary_foreground_color),
                         Span::raw(selected_request.name.clone()).fg(THEME.read().ui.font_color).bg(THEME.read().ui.main_background_color)
                     ])
                 }
                 else {
                     Line::from(vec![
-                        Span::raw("Request > ").fg(THEME.read().ui.secondary_foreground_color),
+                        Span::raw(t!("Request > ")).fg(THEME.read().ui.secondary_foreground_color),
                         Span::raw(format!("{} > ", selected_request.name)).fg(THEME.read().ui.secondary_foreground_color),
                         Span::raw(self.state.to_string()).fg(THEME.read().ui.font_color).bg(THEME.read().ui.main_background_color)
                     ])

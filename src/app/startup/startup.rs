@@ -55,6 +55,9 @@ impl<'a> App<'a> {
             self.parse_app_directory();
         }
 
+        // Initialize locale after config is loaded (CLI arg > config > env var)
+        self.init_locale();
+
         if let Some(command) = &ARGS.command {
             CLI(command.clone())
         }
@@ -90,7 +93,6 @@ impl<'a> App<'a> {
             }
             else if file_name == "atac.toml" {
                 self.parse_config_file(&path);
-                self.init_locale();
                 continue;
             }
             else if file_name == "atac.log" {
@@ -119,7 +121,6 @@ impl<'a> App<'a> {
             
             if global_config_file_path.exists() {
                 self.parse_global_config_file(&global_config_file_path);
-                self.init_locale();
             }
         }
 

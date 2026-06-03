@@ -1,4 +1,12 @@
-ATAC ⚔📩
+ATAC ⚔📩 汉化版
+安装
+```
+cargo binstall atac --git https://github.com/lilyco-42/ATAC
+```
+运行
+```
+atac --lang zh
+```
 ===
 
 [![Rust](https://github.com/Julien-cpsn/ATAC/actions/workflows/rust.yml/badge.svg)](https://github.com/Julien-cpsn/ATAC/actions/workflows/rust.yml)

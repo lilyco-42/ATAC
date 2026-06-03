@@ -2,26 +2,25 @@
 name = "atac"
 description = "Arguably a Terminal API Client. Feature-full, free, open-source, offline and account-less."
 version = "0.23.1"
-authors = ["julien-cpsn"]
+authors = ["lilyco-42"]               # 改为你的名字
 edition = "2024"
 rust-version = "1.90"
 license = "MIT"
 readme = "README.md"
 documentation = "https://atac.julien-cpsn.com/"
-homepage = "https://github.com/Julien-cpsn/ATAC"
-repository = "https://github.com/Julien-cpsn/ATAC"
+homepage = "https://github.com/lilyco-42/ATAC"    # 改为你的 Fork
+repository = "https://github.com/lilyco-42/ATAC"  # 改为你的 Fork
 keywords = ["API", "Client", "TUI", "Postman", "Insomnia"]
 
 [package.metadata.binstall]
-pkg-url = "https://github.com/lilyco-42/ATAC/releases/download/v{version}/{name}-{target}.{format}"
+# 修改 pkg-url，让 cargo-binstall 可以自动匹配 v{version} 的二进制
+pkg-url = "https://github.com/lilyco-42/ATAC/releases/download/v{version}/{name}-v{version}-{target}.{format}"
 
 exclude = [
     ".github",
     "gifs",
     "exemple_resources",
 ]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
 default = ["clipboard"]
